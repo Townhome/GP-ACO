@@ -1,0 +1,5 @@
+/build*/
+/results*/
+/.qa/
+*.user
+*.pdb
