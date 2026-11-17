@@ -17,6 +17,11 @@ Requirements: CMake 3.16 or later and a C++17 compiler, such as Visual Studio
 2022, GCC 9 or later, or Clang 10 or later. Run the following commands from this
 repository's root directory.
 
+```bash
+git clone https://github.com/Townhome/GP-ACO.git
+cd GP-ACO
+```
+
 Windows, with Visual Studio 2022 and its C++ tools installed:
 
 ```powershell
