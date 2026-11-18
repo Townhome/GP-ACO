@@ -8,8 +8,16 @@ ant construction and improve dispatching plans as operating conditions change.
 
 This repository contains one workflow: **joint offline training on the three
 D1 training sets, followed by online testing on all 12 configurations**. The
-required datasets are included. No GPU, Python, LibTorch or network download is
-needed to build or run the program.
+software can be built without the experimental datasets, a GPU, Python, or
+LibTorch.
+
+## Data availability
+
+The GP-ACO source code is publicly available. The experimental training and
+test datasets are not authorized for public release before the associated
+manuscript is accepted for publication. The datasets are therefore excluded
+from this repository. Both the quick check and the full experimental workflow
+require separately obtained, authorized local copies of the data.
 
 ## Build
 
@@ -38,26 +46,28 @@ cmake --build build --parallel
 
 ## Run
 
-First check the complete workflow with a small workload:
+If you already have authorized access to the datasets, place them outside the
+repository in a local data directory that contains a `graph/` subdirectory.
+Pass the parent of `graph/` to `--data`. Start with a small workload:
 
 ```powershell
 # Windows
-.\build\Release\gpaco.exe --quick --threads 20 --output results-quick
+.\build\Release\gpaco.exe --data "C:\path\to\authorized-data" --quick --threads 20 --output results-quick
 ```
 
 ```bash
 # Linux
-./build/gpaco --quick --threads 20 --output results-quick
+./build/gpaco --data /path/to/authorized-data --quick --threads 20 --output results-quick
 ```
 
 Then run the full protocol by omitting `--quick`:
 
 ```powershell
-.\build\Release\gpaco.exe --threads 20 --output results
+.\build\Release\gpaco.exe --data "C:\path\to\authorized-data" --threads 20 --output results
 ```
 
 ```bash
-./build/gpaco --threads 20 --output results
+./build/gpaco --data /path/to/authorized-data --threads 20 --output results
 ```
 
 The full run trains one archive on 1,600 instances per mine and transfers it to
@@ -104,7 +114,6 @@ src/
   problem/       # mine simulator, ore-flow objective and local route moves
   gp/            # trees, semantic archive, reference states and offline training
   aco/           # GP-guided online search and dynamic rescheduling
-data/graph/      # three D1 training sets and 12 test sets
 third_party/     # bundled JSON header
 ```
 

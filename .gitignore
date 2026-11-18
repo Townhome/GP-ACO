@@ -3,3 +3,6 @@
 /.qa/
 *.user
 *.pdb
+
+# Experimental datasets must remain local until authorized for release.
+/data/
